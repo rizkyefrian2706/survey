@@ -1,6 +1,7 @@
 <?php include "admin/config.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -11,8 +12,7 @@
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet"
-        type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
@@ -41,9 +41,9 @@
             const day = ["MINGGU", "SENIN", "SELASA", "RABU", "KAMIS", "JUM'AT", "SABTU"];
             const month = ["JANUARI", "FEBRUARI", "MARET", "APRIL", "MEI", "JUNI", "JULI", "AGUSTUS", "SEPTEMBER", "OKTOBER", "NOVEMBER", "DESEMBER"];
             const d = new Date();
-            document.getElementById("output").innerHTML=day[d.getDay()] + ", "+d.getDate() + "-"+month[d.getMonth()]+ "-" +d.getFullYear();
+            document.getElementById("output").innerHTML = day[d.getDay()] + ", " + d.getDate() + "-" + month[d.getMonth()] + "-" + d.getFullYear();
         }
-        window.addEventListener("load", function () {
+        window.addEventListener("load", function() {
             update();
         })
 
@@ -64,19 +64,19 @@
             var tanggal = document.getElementById("tanggal").value;
             var namasurveyor = document.getElementById("nama_surveyor").value;
             var nokuisioner = document.getElementById("no_kuisioner").value;
-            var vars = "kota="+kota+"&kecamatan="+kecamatan+"&kelurahan="+kelurahan+"&namaresondenterpilih="+namaresondenterpilih+"&alamatresponden="+alamatresponden+"&jeniskelamin="+jeniskelamin+"&statuskk="+statuskk+"&jumlahanggotakeluarga="+jumlahanggotakeluarga+"&nohp="+nohp+"&tanggal="+tanggal+"&namasurveyor="+namasurveyor+"&nokuisioner="+nokuisioner;
+            var vars = "kota=" + kota + "&kecamatan=" + kecamatan + "&kelurahan=" + kelurahan + "&namaresondenterpilih=" + namaresondenterpilih + "&alamatresponden=" + alamatresponden + "&jeniskelamin=" + jeniskelamin + "&statuskk=" + statuskk + "&jumlahanggotakeluarga=" + jumlahanggotakeluarga + "&nohp=" + nohp + "&tanggal=" + tanggal + "&namasurveyor=" + namasurveyor + "&nokuisioner=" + nokuisioner;
             console.log(vars);
             hr.open("POST", url, true);
             hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             hr.onreadystatechange = function() {
-                if(hr.readyState == 4 && hr.status == 200) {
+                if (hr.readyState == 4 && hr.status == 200) {
                     console.log(hr.responseText);
-                    if(hr.responseText == "success"){
+                    if (hr.responseText == "success") {
                         ToastMaker("Responden Berhasil di Input!", 3000, {
                             valign: 'top',
                             classList: ["custom-border", "large-appearance"]
                         });
-                    }else{
+                    } else {
                         ToastMaker("Responden Gagal di Input!", 3000, {
                             valign: 'top',
                             classList: ["custom-border", "large-appearance"]
@@ -84,44 +84,75 @@
                     }
                 }
             }
-            hr.send(vars); 
+            hr.send(vars);
         }
 
         function showKota(idk) {
-        if (idk == "") {
-            alert('please choose data!');
-            return false;
-        } else {
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("kecamatan").innerHTML = this.responseText;
-                }
-            };
-            xmlhttp.open("GET", "lib/kota.php?id=" + idk, true);
-            xmlhttp.send();
+            if (idk == "") {
+                alert('please choose data!');
+                return false;
+            } else {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("kecamatan").innerHTML = this.responseText;
+                    }
+                };
+                xmlhttp.open("GET", "lib/kota.php?id=" + idk, true);
+                xmlhttp.send();
+            }
         }
-    }
 
-    function showKecamatan(idkc) {
-        if (idkc == "") {
-            alert('please choose data!');
-            return;
-        } else {
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("kelurahan").innerHTML = this.responseText;
-                }
-            };
-            xmlhttp.open("GET", "lib/kecamatan.php?id=" + idkc, true);
-            xmlhttp.send();
+        function showKecamatan(idkc) {
+            if (idkc == "") {
+                alert('please choose data!');
+                return;
+            } else {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("kelurahan").innerHTML = this.responseText;
+                    }
+                };
+                xmlhttp.open("GET", "lib/kecamatan.php?id=" + idkc, true);
+                xmlhttp.send();
+            }
         }
-    }
 
-
-
-
+        //profile responden 
+        function save_profile() { 
+            var hr = new XMLHttpRequest();
+            var url = "lib/profile_responden.php"; 
+            var usia = document.querySelector('[name=usia]:checked').value;
+            var pendidikan = document.querySelector('[name=pendidikan]:checked').value;
+            var pendapatan = document.querySelector('[name=pendapatan]:checked').value;
+            var profesi = document.querySelector('[name=profesi]:checked').value;
+            
+            if(profesi == "other"){
+                profesi = document.getElementById("other").value;    
+            }
+            var vars = "usia=" + usia + "&pendidikan=" + pendidikan + "&pendapatan=" + pendapatan + "&profesi=" + profesi + "&responden=0" + "&token=0";
+            console.log(vars);
+            hr.open("POST", url, true);
+            hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            hr.onreadystatechange = function() {
+                if (hr.readyState == 4 && hr.status == 200) {
+                    console.log(hr.responseText);
+                    if (hr.responseText == "success") {
+                        ToastMaker("Responden Berhasil di Input!", 3000, {
+                            valign: 'top',
+                            classList: ["custom-border", "large-appearance"]
+                        });
+                    } else {
+                        ToastMaker("Responden Gagal di Input!", 3000, {
+                            valign: 'top',
+                            classList: ["custom-border", "large-appearance"]
+                        });
+                    }
+                }
+            }
+            hr.send(vars);
+        }
     </script>
 
 </head>
@@ -131,14 +162,11 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top " id="sideNav">
         <a class="navbar-brand js-scroll-trigger" href="#page-top">
             <span class="d-block d-lg-none">Survei Rumah Tangga</span>
-            <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2"
-                    src="assets/img/logo.png" alt="..." /></span>
+            <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/img/logo.png" alt="..." /></span>
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span
-                class="navbar-toggler-icon"></span></button>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarResponsive " style="text-align: left; padding-left:30px">
-            <?php include "menu.php";?>
+            <?php include "menu.php"; ?>
         </div>
     </nav>
     <!-- Page Content-->
@@ -151,7 +179,7 @@
                     <span class="text-primary">RUMAH TANGGA</span>
                 </h1>
                 <div class="subheading mb-5">
-                    SURVEI PASAR PENCAHAYAAN EFISIENSI TINGGI DI INDONESIA 2022 , 
+                    SURVEI PASAR PENCAHAYAAN EFISIENSI TINGGI DI INDONESIA 2022 ,
                     <span class="text-primary" id="output"></span>
                 </div>
                 <p class="lead mb-5">Selamat Pagi/Siang/Sore, kami Surveyor dari Balai Besar Survei dan Pengujian
