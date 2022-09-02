@@ -1,185 +1,7 @@
 <?php
-$dataLamp = [
-    [
-        'id' => '20',
-        'merk' => 'Alfa Lamp'
-    ],
-    [
-        'id' => '21',
-        'merk' => 'Artolite'
-    ],
-    [
-        'id' => '22',
-        'merk' => 'Atama'
-    ],
-    [
-        'id' => '23',
-        'merk' => 'Bandell'
-    ],
-    [
-        'id' => '24',
-        'merk' => 'Cahaya'
-    ],
-    [
-        'id' => '25',
-        'merk' => 'Chikara'
-    ],
-    [
-        'id' => '26',
-        'merk' => 'Chiyoda'
-    ],
-    [
-        'id' => '27',
-        'merk' => 'Ekonomat'
-    ],
-    [
-        'id' => '28',
-        'merk' => 'Electra'
-    ],
-    [
-        'id' => '29',
-        'merk' => 'Floetix'
-    ],
-    [
-        'id' => '30',
-        'merk' => 'Flu-Ro'
-    ],
-    [
-        'id' => '31',
-        'merk' => 'Focus'
-    ],
-    [
-        'id' => '32',
-        'merk' => 'Global'
-    ],
-    [
-        'id' => '33',
-        'merk' => 'Hannochs (impor)'
-    ],
-    [
-        'id' => '34',
-        'merk' => 'Hikari'
-    ],
-    [
-        'id' => '35',
-        'merk' => 'Hori'
-    ],
-    [
-        'id' => '36',
-        'merk' => 'Infinity'
-    ],
-    [
-        'id' => '37',
-        'merk' => 'Integra'
-    ],
-    [
-        'id' => '38',
-        'merk' => 'Kawachi (impor)'
-    ],
-    [
-        'id' => '39',
-        'merk' => 'Keibu'
-    ],
-    [
-        'id' => '40',
-        'merk' => 'Kingled'
-    ],
-    [
-        'id' => '41',
-        'merk' => 'Krisbow (impor)'
-    ],
-    [
-        'id' => '42',
-        'merk' => 'Letsa'
-    ],
-    [
-        'id' => '43',
-        'merk' => 'Light+'
-    ],
-    [
-        'id' => '44',
-        'merk' => 'Luxram'
-    ],
-    [
-        'id' => '45',
-        'merk' => 'Morandon'
-    ],
-    [
-        'id' => '46',
-        'merk' => 'Nexus (impor)'
-    ],
-    [
-        'id' => '47',
-        'merk' => 'Niko'
-    ],
-    [
-        'id' => '48',
-        'merk' => 'Osram (impor)'
-    ],
-    [
-        'id' => '49',
-        'merk' => 'Panasonic'
-    ],
-    [
-        'id' => '50',
-        'merk' => 'Pandawa'
-    ],
-    [
-        'id' => '51',
-        'merk' => 'Philips (impor)'
-    ],
-    [
-        'id' => '52',
-        'merk' => 'Saka'
-    ],
-    [
-        'id' => '53',
-        'merk' => 'Saura'
-    ],
-    [
-        'id' => '54',
-        'merk' => 'Schein'
-    ],
-    [
-        'id' => '55',
-        'merk' => 'Shinyoku'
-    ],
-    [
-        'id' => '56',
-        'merk' => 'Shukaku'
-    ],
-    [
-        'id' => '57',
-        'merk' => 'Solarens'
-    ],
-    [
-        'id' => '58',
-        'merk' => 'Sook'
-    ],
-    [
-        'id' => '59',
-        'merk' => 'Stark'
-    ],
-    [
-        'id' => '60',
-        'merk' => 'Suke'
-    ],
-    [
-        'id' => '61',
-        'merk' => 'Surya'
-    ],
-    [
-        'id' => '62',
-        'merk' => 'Talled'
-    ],
-    [
-        'id' => '63',
-        'merk' => 'Visicom'
-    ]
-];
-
+include "soal/pertanyaan_khusus_2.php";
+include "post/index.php";
 ?>
-
 
 <div class="resume-section-content">
     <h2 class="mb-5">Pertanyaan Umum</h2>
@@ -201,7 +23,7 @@ $dataLamp = [
         </div>
     </div>
     <!-- The Modal -->
-    
+
     <div id="myModal1" class="modal">
         <!-- Modal content -->
         <div class="modal-content">
@@ -495,7 +317,7 @@ $dataLamp = [
             </div>
         </div>
     </div>
-    
+
     <div id="myModal2" class="modal">
         <!-- Modal content -->
         <div class="modal-content">
@@ -520,11 +342,11 @@ $dataLamp = [
                             <td><input type="radio" name="<?= $dt['id']; ?>" value="1">1</td>
                             <td><input type="radio" name="<?= $dt['id']; ?>" value="2">2</td>
                         </tr>
-                    <?php } ?>
+                    <?php } ?> 
                 </table>
             </div>
             <div class="row">
-                <div class="col-md-12"><button class="btn btn-primary" onclick="save_responden()" style="color:white; width:100%">Simpan</button></div>
+                <div class="col-md-12"><button class="btn btn-primary" onclick="save_soal2()" style="color:white; width:100%">Simpan</button></div>
             </div>
         </div>
 
